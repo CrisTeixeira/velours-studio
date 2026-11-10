@@ -1,0 +1,198 @@
+/* ==========================================================================
+   BASE — reset, variáveis da marca e tipografia
+   ========================================================================== */
+
+/* ---------- Variáveis ---------- */
+:root {
+  /* Paleta da marca (preto → rosa escuro) */
+  --black: #0B0B0D;
+  --wine: #3A0A20;
+  --berry: #8E0E44;
+  --pink: #C2185B;
+  --pink-glow: #E0407B;   /* apenas destaques, hovers e estados ativos */
+  --white: #F5F1F3;
+
+  /* Derivadas */
+  --surface: #121216;
+  --surface-2: #18171D;
+  --text: var(--white);
+  --text-muted: #B9AEB4;   /* contraste ≥ 7:1 sobre --black */
+  --text-dim: #8C8187;
+  --line: rgba(245, 241, 243, 0.1);
+  --line-strong: rgba(245, 241, 243, 0.2);
+
+  /* Gradientes */
+  --gradient: linear-gradient(135deg, #0B0B0D 0%, #3A0A20 45%, #8E0E44 75%, #C2185B 100%);
+  --gradient-btn: linear-gradient(135deg, #8E0E44 0%, #C2185B 60%, #E0407B 100%);
+  --gradient-text: linear-gradient(100deg, #F5F1F3 10%, #E0407B 60%, #C2185B 100%);
+
+  /* Vidro */
+  --glass-bg: rgba(245, 241, 243, 0.04);
+  --glass-border: rgba(245, 241, 243, 0.1);
+  --glass-blur: blur(18px) saturate(140%);
+
+  /* Tipografia */
+  --font-display: 'Bebas Neue', 'Oswald', Impact, 'Arial Narrow', sans-serif;
+  --font-head: 'Oswald', 'Arial Narrow', Arial, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Espaçamentos e formas */
+  --container: 1240px;
+  --gutter: clamp(18px, 5vw, 40px);
+  --section-y: clamp(80px, 12vw, 160px);
+  --radius-sm: 10px;
+  --radius: 18px;
+  --radius-lg: 28px;
+  --nav-h: 76px;
+  --diagonal: clamp(32px, 6vw, 90px);
+
+  /* Sombras / brilhos */
+  --shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.7);
+  --glow: 0 0 0 1px rgba(224, 64, 123, 0.35), 0 18px 50px -12px rgba(194, 24, 91, 0.6);
+
+  /* Curvas de animação */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  color-scheme: dark;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 12px);
+}
+
+body {
+  min-height: 100vh;
+  background: var(--black);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; }
+[hidden] { display: none !important; }
+
+/* Bloqueia scroll quando há modal/menu aberto */
+html.is-locked, html.is-locked body { overflow: hidden; }
+
+/* ---------- Textura de grão (ruído subtil sobre todo o site) ---------- */
+body::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 90;
+  pointer-events: none;
+  background-image: url("../assets/images/grain.svg");
+  background-size: 240px;
+  opacity: 0.06;
+}
+
+/* ---------- Tipografia ---------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3rem, 9vw, 6.5rem);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+}
+
+.section-text {
+  max-width: 560px;
+  color: var(--text-muted);
+  font-size: clamp(1rem, 1.6vw, 1.125rem);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-family: var(--font-head);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--pink-glow);
+}
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: var(--gradient-btn);
+}
+.eyebrow--center { display: flex; justify-content: center; }
+
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.note {
+  margin-top: 14px;
+  font-size: 0.8125rem;
+  color: var(--text-dim);
+}
+
+::selection { background: var(--pink); color: var(--white); }
+
+/* ---------- Acessibilidade ---------- */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px; left: 12px;
+  z-index: 1000;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  color: var(--black);
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform 0.2s;
+}
+.skip-link:focus { transform: none; }
+
+:focus-visible {
+  outline: 2px solid var(--pink-glow);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Barra de scroll ---------- */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: linear-gradient(var(--berry), var(--pink)); border-radius: 10px; border: 2px solid var(--black); }

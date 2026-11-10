@@ -1,0 +1,110 @@
+/* ==========================================================================
+   ANIMAÇÕES — keyframes e classes de transição
+   As classes .is-visible / .is-ready são adicionadas pelo JavaScript.
+   ========================================================================== */
+
+/* ---------- Keyframes ---------- */
+@keyframes preloaderFill { to { clip-path: inset(0 0 0 0); } }
+@keyframes preloaderBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes scrollHint {
+  0% { opacity: 0; transform: translateY(0); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(14px); }
+}
+@keyframes letterUp {
+  from { transform: translateY(105%) rotate(6deg); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+@keyframes fadeUp {
+  from { transform: translateY(26px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+@keyframes livePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.7); }
+}
+@keyframes barGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes priceFlip {
+  0% { transform: translateY(0); opacity: 1; }
+  45% { transform: translateY(-60%); opacity: 0; }
+  55% { transform: translateY(60%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes shake {
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+@keyframes drawStroke { to { stroke-dashoffset: 0; } }
+@keyframes popIn {
+  0% { transform: scale(0.6); }
+  60% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+@keyframes ripple {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+@keyframes pinBounce {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -10px; }
+}
+@keyframes sessionProgress { from { transform: scaleX(0); } }
+
+/* ---------- Revelação ao fazer scroll ---------- */
+/* Só esconde os elementos quando o JS está ativo (classe .js no <html>). */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(46px);
+  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+  transition-delay: var(--delay, 0s);
+}
+.js [data-reveal="left"] { transform: translateX(-60px); }
+.js [data-reveal="right"] { transform: translateX(60px); }
+.js [data-reveal="scale"] { transform: scale(0.9); }
+.js [data-reveal="clip"] {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.2s var(--ease-in-out);
+}
+.js [data-reveal].is-visible { opacity: 1; transform: none; }
+.js [data-reveal="clip"].is-visible { clip-path: inset(0 0 0 0); }
+
+/* ---------- Entrada do hero (depois do preloader) ---------- */
+.hero__line { overflow: hidden; padding-top: 0.04em; }
+.js .hero .char { opacity: 0; transform: translateY(105%); }
+.js .is-ready .hero .char {
+  animation: letterUp 0.9s var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 55ms + 0.1s);
+}
+.js .hero__eyebrow, .js .hero__owners, .js .hero__text, .js .hero__ctas { opacity: 0; }
+.js .is-ready .hero__eyebrow { animation: fadeUp 0.9s var(--ease-out) 0s both; }
+.js .is-ready .hero__owners { animation: fadeUp 0.9s var(--ease-out) 0.55s both; }
+.js .is-ready .hero__text { animation: fadeUp 0.9s var(--ease-out) 0.7s both; }
+.js .is-ready .hero__ctas { animation: fadeUp 0.9s var(--ease-out) 0.85s both; }
+.js .hero__img img { transform: scale(1.12); }
+.js .is-ready .hero__img img { transform: scale(1); transition: opacity 1s ease, transform 2.4s var(--ease-out); }
+
+/* Imagens: leve zoom ao passar o rato */
+.gallery__item .img-frame img, .coach-card__front .img-frame img { transition: opacity 0.8s ease, transform 1.2s var(--ease-out); }
+@media (hover: hover) {
+  .gallery__item:hover .img-frame img { transform: scale(1.06); }
+}
+
+/* Progresso da aula a decorrer */
+.session__progress { animation: sessionProgress 1.2s var(--ease-out) both; }
+
+/* ---------- Movimento reduzido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+  .js [data-reveal], .js .hero .char,
+  .js .hero__eyebrow, .js .hero__owners, .js .hero__text, .js .hero__ctas { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+  .shape { translate: none !important; }
+}
