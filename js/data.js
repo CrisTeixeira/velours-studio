@@ -1,5 +1,5 @@
 /* ==========================================================================
-   THE ONE STUDIO — CONTEÚDO DO SITE
+   VELOURS STUDIO — CONTEÚDO DO SITE
    --------------------------------------------------------------------------
    Este é o ÚNICO ficheiro que precisa de ser editado para atualizar o site.
    Todo o texto, horários, preços, contactos e imagens vêm daqui.
@@ -17,9 +17,9 @@ window.STUDIO_DATA = {
 
   /* ---------- Informação geral ---------- */
   studio: {
-    name: 'The One Studio',
-    logoText: 'THE ONE',
-    owners: 'by Pedro & Melissa',
+    name: 'Velours Studio',
+    logoText: 'VELOURS',
+    owners: 'by Julien & Camille',
     tagline: 'Treino com método. Resultados com propósito.',
     address: '[Morada do estúdio]',
     postalCode: '[Código postal, Localidade]',
@@ -47,13 +47,13 @@ window.STUDIO_DATA = {
   sections: {
     hero: {
       eyebrow: 'Estúdio de treino personalizado',
-      title: 'THE ONE',
+      title: 'VELOURS',
       titleOutline: 'STUDIO',
       text: 'Treinos em pequenos grupos e acompanhamento individual, num espaço onde cada repetição conta e ninguém treina sozinho.',
       primaryCta: 'Marcar aula experimental',
       secondaryCta: 'Ver horário',
       image: 'assets/images/hero.webp',
-      imageAlt: 'Pedro e Melissa, fundadores do The One Studio, de braços cruzados no estúdio iluminado a rosa'
+      imageAlt: 'Julien e Camille, fundadores do Velours Studio, de braços cruzados no estúdio iluminado a rosa'
     },
     // Barra de valores logo abaixo do hero
     pillars: [
@@ -73,7 +73,7 @@ window.STUDIO_DATA = {
     },
     about: {
       eyebrow: 'Quem somos',
-      title: 'Pedro & Melissa',
+      title: 'Julien & Camille',
       text: 'Dois treinadores, uma missão: criar o sítio onde gostarias de treinar todos os dias. Toca nos cartões para conhecer cada um.'
     },
     classes: {
@@ -125,22 +125,22 @@ window.STUDIO_DATA = {
   /* ---------- Treinadores ---------- */
   coaches: [
     {
-      id: 'pedro',
-      name: 'Pedro',
+      id: 'julien',
+      name: 'Julien',
       role: 'Coach & Co-fundador',
-      image: 'assets/images/pedro.webp',
-      imageAlt: 'Retrato do coach Pedro, de braços cruzados, com t-shirt preta',
-      bio: '[Biografia do Pedro: percurso, filosofia de treino e o que o motiva todos os dias.]',
+      image: 'assets/images/julien.webp',
+      imageAlt: 'Retrato do coach Julien, de braços cruzados, com t-shirt preta',
+      bio: '[Biografia do Julien: percurso, filosofia de treino e o que o motiva todos os dias.]',
       specialties: ['Treino de força', 'Hipertrofia', 'Preparação física'],
       certifications: ['[Certificação 1]', '[Certificação 2]', '[Licenciatura / Cédula TPTE]']
     },
     {
-      id: 'melissa',
-      name: 'Melissa',
+      id: 'camille',
+      name: 'Camille',
       role: 'Coach & Co-fundadora',
-      image: 'assets/images/melissa.webp',
-      imageAlt: 'Retrato da coach Melissa, com a mão na anca, com top desportivo preto',
-      bio: '[Biografia da Melissa: percurso, filosofia de treino e o que a motiva todos os dias.]',
+      image: 'assets/images/camille.webp',
+      imageAlt: 'Retrato da coach Camille, com a mão na anca, com top desportivo preto',
+      bio: '[Biografia da Camille: percurso, filosofia de treino e o que a motiva todos os dias.]',
       specialties: ['Treino funcional', 'Mobilidade', 'Treino feminino'],
       certifications: ['[Certificação 1]', '[Certificação 2]', '[Licenciatura / Cédula TPTE]']
     }
@@ -219,39 +219,39 @@ window.STUDIO_DATA = {
   ],
   schedule: {
     seg: [
-      { time: '07:00', classId: 'forca', coach: 'Pedro' },
-      { time: '09:30', classId: 'mobilidade', coach: 'Melissa' },
-      { time: '12:30', classId: 'hiit', coach: 'Melissa' },
-      { time: '18:30', classId: 'funcional', coach: 'Pedro' },
-      { time: '19:30', classId: 'forca', coach: 'Melissa' }
+      { time: '07:00', classId: 'forca', coach: 'Julien' },
+      { time: '09:30', classId: 'mobilidade', coach: 'Camille' },
+      { time: '12:30', classId: 'hiit', coach: 'Camille' },
+      { time: '18:30', classId: 'funcional', coach: 'Julien' },
+      { time: '19:30', classId: 'forca', coach: 'Camille' }
     ],
     ter: [
-      { time: '07:00', classId: 'hiit', coach: 'Pedro' },
-      { time: '12:30', classId: 'forca', coach: 'Pedro' },
-      { time: '18:30', classId: 'mobilidade', coach: 'Melissa' },
-      { time: '19:30', classId: 'hiit', coach: 'Melissa' }
+      { time: '07:00', classId: 'hiit', coach: 'Julien' },
+      { time: '12:30', classId: 'forca', coach: 'Julien' },
+      { time: '18:30', classId: 'mobilidade', coach: 'Camille' },
+      { time: '19:30', classId: 'hiit', coach: 'Camille' }
     ],
     qua: [
-      { time: '07:00', classId: 'funcional', coach: 'Melissa' },
-      { time: '09:30', classId: 'mobilidade', coach: 'Melissa' },
-      { time: '12:30', classId: 'forca', coach: 'Pedro' },
-      { time: '18:30', classId: 'hiit', coach: 'Pedro' },
-      { time: '19:30', classId: 'funcional', coach: 'Melissa' }
+      { time: '07:00', classId: 'funcional', coach: 'Camille' },
+      { time: '09:30', classId: 'mobilidade', coach: 'Camille' },
+      { time: '12:30', classId: 'forca', coach: 'Julien' },
+      { time: '18:30', classId: 'hiit', coach: 'Julien' },
+      { time: '19:30', classId: 'funcional', coach: 'Camille' }
     ],
     qui: [
-      { time: '07:00', classId: 'forca', coach: 'Pedro' },
-      { time: '12:30', classId: 'hiit', coach: 'Melissa' },
-      { time: '18:30', classId: 'forca', coach: 'Pedro' },
-      { time: '19:30', classId: 'mobilidade', coach: 'Melissa' }
+      { time: '07:00', classId: 'forca', coach: 'Julien' },
+      { time: '12:30', classId: 'hiit', coach: 'Camille' },
+      { time: '18:30', classId: 'forca', coach: 'Julien' },
+      { time: '19:30', classId: 'mobilidade', coach: 'Camille' }
     ],
     sex: [
-      { time: '07:00', classId: 'hiit', coach: 'Melissa' },
-      { time: '12:30', classId: 'funcional', coach: 'Pedro' },
-      { time: '18:30', classId: 'forca', coach: 'Melissa' }
+      { time: '07:00', classId: 'hiit', coach: 'Camille' },
+      { time: '12:30', classId: 'funcional', coach: 'Julien' },
+      { time: '18:30', classId: 'forca', coach: 'Camille' }
     ],
     sab: [
-      { time: '09:00', classId: 'funcional', coach: 'Pedro & Melissa' },
-      { time: '10:15', classId: 'mobilidade', coach: 'Melissa' }
+      { time: '09:00', classId: 'funcional', coach: 'Julien & Camille' },
+      { time: '10:15', classId: 'mobilidade', coach: 'Camille' }
     ],
     dom: []
   },
@@ -331,8 +331,8 @@ window.STUDIO_DATA = {
     title: 'Marcar aula experimental',
     successTitle: 'Está quase!',
     successText: 'Abrimos o WhatsApp com a tua mensagem pronta. Só tens de a enviar e confirmamos a tua aula.',
-    message: 'Olá The One Studio! 👋\nGostaria de marcar uma aula experimental.\n\nNome: {nome}\nModalidade: {modalidade}\nDia: {dia}\nHora: {hora}{extra}',
-    floatingMessage: 'Olá The One Studio! Gostaria de saber mais sobre as aulas.',
+    message: 'Olá Velours Studio! 👋\nGostaria de marcar uma aula experimental.\n\nNome: {nome}\nModalidade: {modalidade}\nDia: {dia}\nHora: {hora}{extra}',
+    floatingMessage: 'Olá Velours Studio! Gostaria de saber mais sobre as aulas.',
     // Opções de horário para modalidades por marcação (ex.: Personal Training)
     appointmentSlots: ['Manhã (07h–12h)', 'Almoço (12h–14h)', 'Tarde (14h–18h)', 'Noite (18h–21h)']
   }

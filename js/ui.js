@@ -3,15 +3,15 @@
    (modal, carrossel, acordeão, contadores, cursor, botões magnéticos,
     tilt 3D, cartões flip, comparador antes/depois, preços, parallax do rato)
 
-   Expõe: window.TheOne.utils e window.TheOne.ui
+   Expõe: window.Velours.utils e window.Velours.ui
    ========================================================================== */
 
 // Indica ao CSS que o JS está ativo (permite esconder elementos para animar)
 document.documentElement.classList.add('js');
 
-window.TheOne = window.TheOne || {};
+window.Velours = window.Velours || {};
 
-(function (TheOne) {
+(function (Velours) {
   'use strict';
 
   /* ======================================================================
@@ -70,7 +70,7 @@ window.TheOne = window.TheOne || {};
       const digits = raw.includes('[') ? '' : raw.replace(/\D/g, '');
       if (!digits && !utils._warnedWa) {
         utils._warnedWa = true;
-        console.warn('[The One] Número de WhatsApp por definir em js/data.js (studio.whatsapp).');
+        console.warn('[Velours] Número de WhatsApp por definir em js/data.js (studio.whatsapp).');
       }
       return `https://wa.me/${digits}?text=${encodeURIComponent(text || '')}`;
     },
@@ -641,8 +641,8 @@ window.TheOne = window.TheOne || {};
     });
   }
 
-  TheOne.utils = utils;
-  TheOne.ui = {
+  Velours.utils = utils;
+  Velours.ui = {
     modal,
     initPillars,
     initCarousel,
@@ -656,4 +656,4 @@ window.TheOne = window.TheOne || {};
     initPricingToggle,
     initHeroMouse
   };
-})(window.TheOne);
+})(window.Velours);

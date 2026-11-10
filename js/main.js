@@ -6,17 +6,17 @@
    4. Preloader
    ========================================================================== */
 
-(function (TheOne) {
+(function (Velours) {
   'use strict';
 
   const data = window.STUDIO_DATA;
   if (!data) {
-    console.error('[The One] js/data.js não foi carregado.');
+    console.error('[Velours] js/data.js não foi carregado.');
     return;
   }
-  const utils = TheOne.utils;
+  const utils = Velours.utils;
   const { $, $$, esc, icon, get } = utils;
-  const ui = TheOne.ui;
+  const ui = Velours.ui;
 
   /* ======================================================================
      1. CONTEÚDO
@@ -119,10 +119,10 @@
 
   /** Modal com os detalhes de uma modalidade */
   function openClass(id) {
-    const c = TheOne.schedule.classById(id);
+    const c = Velours.schedule.classById(id);
     if (!c) return;
     const days = data.days;
-    const next = c.appointment ? [] : TheOne.schedule.nextSessions(c.id, 3);
+    const next = c.appointment ? [] : Velours.schedule.nextSessions(c.id, 3);
     const nextHtml = c.appointment
       ? '<p>Por marcação, em horário a combinar com o teu coach.</p>'
       : next.length
@@ -153,13 +153,13 @@
 
     // Barras de intensidade animam em sequência
     $$('#classModalBody .intensity--lg span').forEach((s, i) => { s.style.animationDelay = `${0.15 + i * 0.08}s`; });
-    $('#classModalBook').addEventListener('click', () => TheOne.booking.open({ classId: c.id }));
+    $('#classModalBook').addEventListener('click', () => Velours.booking.open({ classId: c.id }));
     ui.modal.open('classModal');
   }
 
   function renderStats() {
     render('stats', data.stats.map((s) => {
-      const value = s.value === 'auto' ? TheOne.schedule.countWeekly() : Number(s.value) || 0;
+      const value = s.value === 'auto' ? Velours.schedule.countWeekly() : Number(s.value) || 0;
       return `
         <div class="stat" data-reveal>
           <p class="stat__value">${esc(s.prefix)}<span data-count-to="${value}">0</span>${esc(s.suffix)}</p>
@@ -485,8 +485,8 @@
 
     // Módulos
     ui.modal.init();
-    TheOne.schedule.init();
-    TheOne.booking.init();
+    Velours.schedule.init();
+    Velours.booking.init();
     ui.initFlipCards();
     ui.initAccordion($('.accordion'));
     ui.initPillars();
@@ -508,4 +508,4 @@
   }
 
   start();
-})(window.TheOne);
+})(window.Velours);

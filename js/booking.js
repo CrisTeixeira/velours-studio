@@ -4,13 +4,13 @@
    validação e animação de sucesso. Sem servidor: ao enviar, abre o
    WhatsApp com a mensagem já preenchida para o número em data.js.
 
-   Expõe: window.TheOne.booking
+   Expõe: window.Velours.booking
    ========================================================================== */
 
-(function (TheOne) {
+(function (Velours) {
   'use strict';
 
-  const { $, $$, esc, weekdayIndex } = TheOne.utils;
+  const { $, $$, esc, weekdayIndex } = Velours.utils;
   const data = window.STUDIO_DATA;
   const MODAL_ID = 'bookingModal';
   const DAYS_AHEAD = 14;      // quantos dias aparecem na lista "Dia"
@@ -29,7 +29,7 @@
 
   /** Próximas datas em que a modalidade escolhida tem aulas */
   function availableDates(classId) {
-    const cls = TheOne.schedule.classById(classId);
+    const cls = Velours.schedule.classById(classId);
     const out = [];
     const now = new Date();
     const nowMin = now.getHours() * 60 + now.getMinutes();
@@ -37,10 +37,10 @@
       const date = new Date(now);
       date.setDate(now.getDate() + i);
       const idx = weekdayIndex(date);
-      const daySessions = TheOne.schedule.sessionsOn(idx);
+      const daySessions = Velours.schedule.sessionsOn(idx);
       if (!daySessions.length) continue;                         // estúdio fechado
       if (!cls.appointment) {
-        const times = TheOne.schedule.sessionsOn(idx, classId).filter((s) => i > 0 || s.start > nowMin + 30);
+        const times = Velours.schedule.sessionsOn(idx, classId).filter((s) => i > 0 || s.start > nowMin + 30);
         if (!times.length) continue;
       }
       out.push({ date, idx, offset: i });
@@ -71,7 +71,7 @@
 
   function fillTimes(preferredTime) {
     const opt = fields.day.selectedOptions[0];
-    const cls = TheOne.schedule.classById(fields.cls.value);
+    const cls = Velours.schedule.classById(fields.cls.value);
     if (!cls || !opt || !opt.value) {
       fields.time.innerHTML = '<option value="">—</option>';
       fields.time.disabled = true;
@@ -83,7 +83,7 @@
       options = data.booking.appointmentSlots.map((t) => ({ value: t, label: t }));
     } else {
       const nowMin = new Date().getHours() * 60 + new Date().getMinutes();
-      options = TheOne.schedule.sessionsOn(Number(opt.dataset.idx), cls.id)
+      options = Velours.schedule.sessionsOn(Number(opt.dataset.idx), cls.id)
         .filter((s) => opt.dataset.offset !== '0' || s.start > nowMin + 30)
         .map((s) => ({ value: s.time, label: `${s.time} · ${s.coach}` }));
     }
@@ -128,7 +128,7 @@
 
   /* ---------- Envio ---------- */
   function buildMessage() {
-    const cls = TheOne.schedule.classById(fields.cls.value);
+    const cls = Velours.schedule.classById(fields.cls.value);
     const dayLabel = fields.day.selectedOptions[0].textContent.replace(/^(Hoje|Amanhã) · /, '');
     const replacements = {
       nome: fields.name.value.trim(),
@@ -145,7 +145,7 @@
     submitted = true;
     if (!validateAll()) return;
 
-    const url = TheOne.utils.whatsappUrl(buildMessage());
+    const url = Velours.utils.whatsappUrl(buildMessage());
     // Abrir de imediato (dentro do clique) evita o bloqueio de pop-ups
     window.open(url, '_blank', 'noopener');
 
@@ -189,7 +189,7 @@
 
     // Foca o primeiro campo por preencher
     const focus = !fields.name.value ? '#bfName' : '#bfPhone';
-    TheOne.ui.modal.open(MODAL_ID, { focus });
+    Velours.ui.modal.open(MODAL_ID, { focus });
   }
 
   function init() {
@@ -231,5 +231,5 @@
     document.getElementById(MODAL_ID).addEventListener('modal:closed', reset);
   }
 
-  TheOne.booking = { init, open };
-})(window.TheOne);
+  Velours.booking = { init, open };
+})(window.Velours);

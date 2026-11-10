@@ -5,13 +5,13 @@
    • Indicador "A decorrer" com barra de progresso e "A seguir"
    • Funções auxiliares usadas noutros módulos (próximas aulas, total semanal)
 
-   Expõe: window.TheOne.schedule
+   Expõe: window.Velours.schedule
    ========================================================================== */
 
-(function (TheOne) {
+(function (Velours) {
   'use strict';
 
-  const { $, $$, esc, icon, toMinutes, toTime, weekdayIndex } = TheOne.utils;
+  const { $, $$, esc, icon, toMinutes, toTime, weekdayIndex } = Velours.utils;
   const data = window.STUDIO_DATA;
 
   const state = {
@@ -30,7 +30,7 @@
       .map((s) => {
         const cls = classById(s.classId);
         if (!cls) {
-          console.warn(`[The One] Modalidade "${s.classId}" no horário não existe em classes.`);
+          console.warn(`[Velours] Modalidade "${s.classId}" no horário não existe em classes.`);
           return null;
         }
         const start = toMinutes(s.time);
@@ -208,7 +208,7 @@
       if (goto) return selectDay(Number(goto.dataset.gotoDay), true);
       const btn = e.target.closest('[data-book-session]');
       if (!btn) return;
-      TheOne.booking.open({
+      Velours.booking.open({
         classId: btn.dataset.class,
         dayIndex: Number(btn.dataset.day),
         time: btn.dataset.time
@@ -222,5 +222,5 @@
     }, 60000);
   }
 
-  TheOne.schedule = { init, nextSessions, sessionsOn, countWeekly, classById };
-})(window.TheOne);
+  Velours.schedule = { init, nextSessions, sessionsOn, countWeekly, classById };
+})(window.Velours);
